@@ -1,0 +1,22 @@
+## Topnav single links
+## if you want to list an external url, use external_url instead of url. the theme will apply a different link base.
+topnav:
+- title: Topnav
+  items:
+    - title: Home
+      url: /index.html
+
+#Topnav dropdowns
+topnav_dropdowns:
+- title: Topnav dropdowns
+  folders:
+    - title: Related Links
+      folderitems:
+        - title: Official homepage
+          external_url: http://www.big-xyt.com
+        - title: Twitter
+          external_url: https://twitter.com/bigxyt
+        - title: LinkedIn
+          external_url: https://www.linkedin.com/company/big---xyt-gmbh
+        - title: Github repository
+          external_url: https://github.com/xyt-hub
