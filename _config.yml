@@ -1,4 +1,4 @@
-repository: xyt-hub/xyt-hub.github.io
+repository: xythub/xythub.github.io
 
 output: web
 # this property is useful for conditional filtering of content that is separate from the PDF.
@@ -13,7 +13,7 @@ company_name: big xyt AG
 # this appears in the footer
 
 github_editme_path:
-# xyt-hub/xyt-hub.github.io/blob/gh-pages/
+# xythub/xythub.github.io/blob/gh-pages/
 # if you're using Github, provide the basepath to the branch you've created for reviews, following the sample here. if not, leave this value blank.
 
 disqus_shortname:
@@ -103,4 +103,4 @@ description: "API documentation for the xyt hub."
 # the description is used in the feed.xml file
 
 # needed for sitemap.xml file only
-url: https://xyt-hub.github.io
+url: https://xythub.github.io
