@@ -1,7 +1,7 @@
 ---
 title: Accessing data from R
-keywords: R, sample, data access
-summary: "This is the official documentation for xyt's R package."
+keywords: R, sample, data access, xyt hub, xyt-hub, big xyt, big-xyt, documentation, API documentation, API, single API, tick data
+summary: "This is the API documentation for xyt hub R package."
 sidebar: xyt_sidebar
 permalink: lib_r.html
 folder: xyt
@@ -140,7 +140,7 @@ Retrieves tick data (trades, quote, trades and quotes) for given symbol and filt
 Retrieving all trades (including non-regular) with trade corrections applied:
 
 ```
-tradesData <- xythub.getTickData (source = "ACTIV", symbol = "ZAL.XE", day = "2016-09-02", dataType = 0, flags = c("APPLY_TRADE_CORRECTIONS", "INCLUDE_NON_REGULAR", "INCLUDE_TRADE_CONDITION_INFO"))
+tradesData <- xythub.getTickData (source = "ACTIV", symbol = "ZAL.XE", day = "2016-09-02", dataType = 0, flags = c("INCLUDE_NON_REGULAR", "INCLUDE_TRADE_CONDITION_INFO"))
 ```
 
 

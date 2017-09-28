@@ -1,7 +1,7 @@
 ---
 title: Accessing data from Python
-keywords: python, sample, data access
-summary: "This is the official documentation for xyt's Python package."
+keywords: python, sample, data access, xyt hub, xyt-hub, big xyt, big-xyt, documentation, API documentation, API, single API, tick data
+summary: "This is the API documentation for xyt hub Python package."
 sidebar: xyt_sidebar
 permalink: lib_python.html
 folder: xyt
@@ -151,7 +151,7 @@ Retrieving all trades (including non-regular) with trade corrections applied:
     td = tick_data(source='ACTIV', symbol='ZAL.XE', day='2016.05.05',
                    data_type=TickDataType.TRADES,
                    from_time='09:00:00.000', to_time='09:10:09.999',
-                   flags=[TickDataFlag.APPLY_TRADE_CORRECTIONS, TickDataFlag.INCLUDE_NON_REGULAR,
+                   flags=[TickDataFlag.INCLUDE_NON_REGULAR,
                           TickDataFlag.INCLUDE_TRADE_CONDITION_INFO])
 
 
@@ -171,7 +171,7 @@ Retrieving trades and quotes in one call:
     td = tick_data(source='ACTIV', symbol='ZAL.XE', day='2016.05.05',
                    data_type=TickDataType.TRADES_AND_QUOTES,
                    from_time='09:00:00.000', to_time='09:02:00.000',
-                   flags=[TickDataFlag.APPLY_TRADE_CORRECTIONS, TickDataFlag.INCLUDE_NON_REGULAR,
+                   flags=[TickDataFlag.INCLUDE_NON_REGULAR,
                           TickDataFlag.INCLUDE_TRADE_CONDITION_INFO])
 
 
@@ -236,7 +236,7 @@ Retrieving hourly aggregated trades:
     td = tick_aggregated(source='ACTIV', symbol='CL/17U.NXG', day='2017.08.16',
                          bin_size=3600, # hourly
                          data_type=TickDataType.TRADES,
-                         flags=[TickDataFlag.APPLY_TRADE_CORRECTIONS, TickDataFlag.INCLUDE_NON_REGULAR,
+                         flags=[TickDataFlag.INCLUDE_NON_REGULAR,
                                 TickDataFlag.USE_MARKET_TS])
 
 
@@ -303,7 +303,7 @@ Retrieving trade snapshot at 12:00:00.00:
     td = tick_snapshot(source='ACTIV', symbols=['CL/17U.NXG'], day='2017.08.16',
                        data_type=TickDataType.TRADES,
                        time='12:00:00.000',
-                       flags=[TickDataFlag.APPLY_TRADE_CORRECTIONS, TickDataFlag.INCLUDE_NON_REGULAR,
+                       flags=[TickDataFlag.INCLUDE_NON_REGULAR,
                               TickDataFlag.USE_MARKET_TS])
 
 Retrieving quote snapshot at 09:15:00:
@@ -322,7 +322,7 @@ Retrieving trade and quote snapshot at 10:03:00:
     td = tick_snapshot(source='ACTIV', symbols=['CL/17U.NXG'], day='2017.08.16',
                        data_type=TickDataType.TRADES_AND_QUOTES,
                        time='10:03:00.000',
-                       flags=[TickDataFlag.APPLY_TRADE_CORRECTIONS, TickDataFlag.INCLUDE_NON_REGULAR,
+                       flags=[TickDataFlag.INCLUDE_NON_REGULAR,
                               TickDataFlag.USE_MARKET_TS])
 
 #### Input parameters

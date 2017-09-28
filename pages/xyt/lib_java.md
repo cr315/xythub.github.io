@@ -1,7 +1,7 @@
 ---
 title: Accessing data from Java
-keywords: java, sample, data access
-summary: "This is the official documentation for xyt's Java package."
+keywords: java, sample, data access, xyt hub, xyt-hub, big xyt, big-xyt, documentation, API documentation, API, single API, tick data
+summary: "This is the API documentation for xyt hub Java package."
 sidebar: xyt_sidebar
 permalink: lib_java.html
 folder: xyt
@@ -152,7 +152,6 @@ Retrieving all trades (including non-regular) with trade corrections applied:
 
 ```
 List<TickDataRequest.Flag> flags = new ArrayList<TickDataRequest.Flag>();
-flags.add(TickDataRequest.Flag.APPLY_TRADE_CORRECTIONS);
 flags.add(TickDataRequest.Flag.INCLUDE_NON_REGULAR);
 flags.add(TickDataRequest.Flag.INCLUDE_TRADE_CONDITION_INFO);
 
@@ -175,7 +174,6 @@ Retrieving trades and quotes in one call. Since `TickDataRequest.Flag.INCLUDE_TR
 
 ```
 List<TickDataRequest.Flag> flags = new ArrayList<TickDataRequest.Flag>();
-flags.add(TickDataRequest.Flag.APPLY_TRADE_CORRECTIONS);
 flags.add(TickDataRequest.Flag.INCLUDE_NON_REGULAR);
 flags.add(TickDataRequest.Flag.INCLUDE_TRADE_CONDITION_INFO);
 
@@ -240,7 +238,6 @@ Retrieving hourly aggregated trades:
 
 ```
 List<TickDataRequest.Flag> flags = new ArrayList<TickDataRequest.Flag>();
-flags.add(TickDataRequest.Flag.APPLY_TRADE_CORRECTIONS);
 flags.add(TickDataRequest.Flag.INCLUDE_NON_REGULAR);
 flags.add(TickDataRequest.Flag.USE_MARKET_TS);
 
@@ -309,7 +306,6 @@ Retrieving trade snapshot at 12:00:00.00:
 List<String> symbols = new ArrayList<String>();
 symbols.add("CL/17U.NXG");
 List<TickDataRequest.Flag> flags = new ArrayList<TickDataRequest.Flag>();
-flags.add(TickDataRequest.Flag.APPLY_TRADE_CORRECTIONS);
 flags.add(TickDataRequest.Flag.INCLUDE_NON_REGULAR);
 flags.add(TickDataRequest.Flag.USE_MARKET_TS);
 
@@ -333,7 +329,6 @@ List<String> symbols = new ArrayList<String>();
 symbols.add("CL/17U.NXG");
 
 List<TickDataRequest.Flag> flags = new ArrayList<TickDataRequest.Flag>();
-flags.add(TickDataRequest.Flag.APPLY_TRADE_CORRECTIONS);
 flags.add(TickDataRequest.Flag.INCLUDE_NON_REGULAR);
 flags.add(TickDataRequest.Flag.USE_MARKET_TS);
 

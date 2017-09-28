@@ -1,7 +1,7 @@
 ---
 title: Accessing data from C#
-keywords: csharp, sample, data access
-summary: "This is the official documentation for xyt's C Sharp package."
+keywords: csharp, sample, data access, xyt hub, xyt-hub, big xyt, big-xyt, documentation, API documentation, API, single API, tick data
+summary: "This is the API documentation for xyt hub C Sharp package."
 sidebar: xyt_sidebar
 permalink: lib_csharp.html
 folder: xyt
@@ -141,8 +141,7 @@ Retrieves tick data (trades, quote, trades and quotes) for given symbol and filt
 Retrieving all trades (including non-regular) with trade corrections applied:
 
 ```
-var flags = new List<TickDataRequest.Types.Flag>() { TickDataRequest.Types.Flag.ApplyTradeCorrections,
-                                                     TickDataRequest.Types.Flag.IncludeNonRegular,
+var flags = new List<TickDataRequest.Types.Flag>() { TickDataRequest.Types.Flag.IncludeNonRegular,
                                                      TickDataRequest.Types.Flag.IncludeTradeConditionInfo };
 
 var trades = client.TickData("SOURCE", "ZAL.XE",
@@ -163,8 +162,7 @@ var quotes = client.TickData("SOURCE", "ZAL.XE", new DateTime(2016, 9, 2),
 Retrieving trades and quotes in one call:
 
 ```
-var flags = new List<TickDataRequest.Types.Flag>() { TickDataRequest.Types.Flag.ApplyTradeCorrections,
-                                                     TickDataRequest.Types.Flag.IncludeNonRegular,
+var flags = new List<TickDataRequest.Types.Flag>() { TickDataRequest.Types.Flag.IncludeNonRegular,
                                                      TickDataRequest.Types.Flag.IncludeTradeConditionInfo };
 
 var tradesAndQuotes = client.TickData("SOURCE", "ZAL.XE",
@@ -232,8 +230,7 @@ In case there was no ticks in the market, the result still contains given bin wi
 Retrieving hourly aggregated trades:
 
 ```
-var flags = new List<TickDataRequest.Types.Flag>() { TickDataRequest.Types.Flag.ApplyTradeCorrections,
-                                                     TickDataRequest.Types.Flag.IncludeNonRegular,
+var flags = new List<TickDataRequest.Types.Flag>() { TickDataRequest.Types.Flag.IncludeNonRegular,
                                                      TickDataRequest.Types.Flag.UseMarketTs };
 
 var tickAggregated = client.TickAggregated("SOURCE", "CL/17U.NXG",
@@ -307,8 +304,7 @@ Retrieving trade snapshot at 12:00:00.00:
 
 ```
 var symbols = new List<string>() { "CL/17U.NXG" };
-var flags = new List<TickDataRequest.Types.Flag>() { TickDataRequest.Types.Flag.ApplyTradeCorrections,
-                                                     TickDataRequest.Types.Flag.IncludeNonRegular,
+var flags = new List<TickDataRequest.Types.Flag>() { TickDataRequest.Types.Flag.IncludeNonRegular,
                                                      TickDataRequest.Types.Flag.UseMarketTs };
 
 var tickSnapshot = client.TickSnapshot("SOURCE", symbols,
@@ -333,8 +329,7 @@ Retrieving trade and quote snapshot at 10:03:00:
 
 ```
 var symbols = new List<string>() { "CL/17U.NXG" };
-var flags = new List<TickDataRequest.Types.Flag>() { TickDataRequest.Types.Flag.ApplyTradeCorrections,
-                                                     TickDataRequest.Types.Flag.IncludeNonRegular,
+var flags = new List<TickDataRequest.Types.Flag>() { TickDataRequest.Types.Flag.IncludeNonRegular,
                                                      TickDataRequest.Types.Flag.UseMarketTs };
 
 var tickSnapshot = client.TickSnapshot("SOURCE", symbols,
