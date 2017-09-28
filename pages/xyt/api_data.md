@@ -1,6 +1,6 @@
 ---
 title: Data access API
-keywords: api
+keywords: documentation, API documentation, API, single API, tick data, xyt hub, xyt-hub, big xyt, big-xyt
 summary: "Data API Overview."
 sidebar: xyt_sidebar
 permalink: api_data.html

@@ -1,6 +1,6 @@
 ---
 title: Java REST API sample
-keywords: sample, java, api
+keywords: documentation, API documentation, API, single API, tick data, sample, java, api, xyt hub, xyt-hub, big xyt, big-xyt
 summary: "This sample demonstrates how to directly access REST API from Java."
 sidebar: xyt_sidebar
 permalink: api_sample_java.html

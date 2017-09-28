@@ -12,7 +12,9 @@ topnav_dropdowns:
   folders:
     - title: Related Links
       folderitems:
-        - title: Official homepage
+        - title: xyt hub
+          external_url: https://xythub.com
+        - title: big xyt homepage
           external_url: http://www.big-xyt.com
         - title: Twitter
           external_url: https://twitter.com/bigxyt

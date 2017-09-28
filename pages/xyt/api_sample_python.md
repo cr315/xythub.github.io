@@ -1,6 +1,6 @@
 ---
 title: Python REST API sample
-keywords: sample, python, api
+keywords: documentation, API documentation, API, single API, tick data, sample, python, api, xyt hub, xyt-hub, big xyt, big-xyt
 summary: "This sample demonstrates how to directly access REST API from Python."
 sidebar: xyt_sidebar
 permalink: api_sample_python.html

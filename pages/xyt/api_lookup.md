@@ -1,6 +1,6 @@
 ---
 title: Data lookup API
-keywords: api
+keywords: documentation, API documentation, API, single API, tick data, xyt hub, xyt-hub, big xyt, big-xyt
 summary: "Lookup API Overview."
 sidebar: xyt_sidebar
 permalink: api_lookup.html

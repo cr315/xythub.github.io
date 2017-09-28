@@ -1,6 +1,6 @@
 ---
 title: Support
-keywords: support
+keywords: support, xyt hub, xyt-hub, big xyt, big-xyt, documentation, API documentation, API, single API, tick data
 summary: "This page describes how to request support."
 toc: false
 sidebar: xyt_sidebar

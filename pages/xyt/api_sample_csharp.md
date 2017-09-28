@@ -1,6 +1,6 @@
 ---
 title: C# REST API sample
-keywords: sample, c#, csharp, api
+keywords: documentation, API documentation, API, single API, tick data, sample, c#, csharp, api, xyt hub, xyt-hub, big xyt, big-xyt
 summary: "This sample demonstrates how to directly access REST API from C#."
 sidebar: xyt_sidebar
 permalink: api_sample_csharp.html

@@ -1,6 +1,6 @@
 ---
 title: API overview
-keywords: api, overview
+keywords: documentation, API documentation, API, single API, tick data, overview, xyt hub, xyt-hub, big xyt, big-xyt
 summary: "This is the official documentation for xyt's Java package."
 sidebar: xyt_sidebar
 permalink: api_overview.html
