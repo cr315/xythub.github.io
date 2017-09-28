@@ -83,7 +83,6 @@ defaults:
       comments: true
       search: true
       tooltip: true
-
   -
     scope:
       path: ""
