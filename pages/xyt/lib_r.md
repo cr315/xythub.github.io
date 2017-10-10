@@ -30,7 +30,7 @@ Browsing data catalogue
 Listing of available sources:
 
 ```
-sources <- xythub.lookupSources();
+sources <- xythub.lookupSources()
 ```
 
 ### Exchanges lookup
@@ -40,7 +40,7 @@ Retrieving overview of exchanges on given data source.
 Listing all available exchanges:
 
 ```
-allExchanges <- xythub.lookupExchanges (source = "ACTIV")
+allExchanges <- xythub.lookupExchanges(source = "ACTIV")
 ```
 
 
@@ -84,7 +84,8 @@ symbolsByKeyword <- xythub.lookupSymbols(source = "ACTIV", pattern = "apple")
 Listing all symbols on given data source by pattern and dates range:
 
 ```
-symbolsByKeyword <- xythub.lookupSymbols(source = "ACTIV", pattern = "apple", firstDay = "2016-09-01", lastDay = "2016-09-02");
+symbolsByKeyword <- xythub.lookupSymbols(source = "ACTIV", pattern = "apple",
+                                         firstDay = "2016-09-01", lastDay = "2016-09-02")
 ```
 
 #### Advanced searching
@@ -93,22 +94,23 @@ More advanced search limiting to specific exchanges on the data source and speci
 
 ```
 foundSymbols <- xythub.lookupSymbols(source = "ACTIV", pattern = "zal", exchangeFilters = c("XETRA", "BXTR"),
-                                     itemTypeFilters = c("INDIVIDUAL_ITEM"), firstDay = "2016-09-01", lastDay = "2016-09-02")
+                                     itemTypeFilters = c(xythub.ITEM_TYPE()$INDIVIDUAL_ITEM),
+                                     firstDay = "2016-09-01", lastDay = "2016-09-02")
 ```
 
 #### Input parameters
 
-| Parameter            | Type                | Required  | Description                                      |
-|----------------------|---------------------|-----------|--------------------------------------------------|
-| source               | character           | x         | Data source.                                     |
-| pattern              | character           |           | Lookup pattern.                                  |
-| exchangeFilters      | character           |           | Narrow lookup to one or more exchange names.     |
-| regionFilters        | character           |           | Narrow lookup to one or more region names.       |
-| entityFilters        | character           |           | Narrow lookup to one or more entities.           |
-| productTypeFilters   | character           |           | Narrow lookup to one or more product types.      |
-| itemTypeFilters      | character           |           | Narrow lookup to one or more item types.         |
-| firstDay             | POSIXlt / character |           | First day that should be taken into account.     |
-| lastDay              | POSIXlt / character |           | Last day that should be taken into account.      |
+| Parameter            | Type                    | Required  | Description                                      |
+|----------------------|-------------------------|-----------|--------------------------------------------------|
+| source               | character               | x         | Data source.                                     |
+| pattern              | character               |           | Lookup pattern.                                  |
+| exchangeFilters      | character               |           | Narrow lookup to one or more exchange names.     |
+| regionFilters        | character               |           | Narrow lookup to one or more region names.       |
+| entityFilters        | character               |           | Narrow lookup to one or more entities.           |
+| productTypeFilters   | c(xythub.PRODUCT_TYPE)  |           | Narrow lookup to one or more product types.      |
+| itemTypeFilters      | c(xythub.ITEM_TYPE)     |           | Narrow lookup to one or more item types.         |
+| firstDay             | POSIXlt / character     |           | First day that should be taken into account.     |
+| lastDay              | POSIXlt / character     |           | Last day that should be taken into account.      |
 
 
 #### Output columns
@@ -140,43 +142,46 @@ Retrieves tick data (trades, quote, trades and quotes) for given symbol and filt
 Retrieving all trades (including non-regular) with trade corrections applied:
 
 ```
-tradesData <- xythub.getTickData (source = "ACTIV", symbol = "ZAL.XE", day = "2016-09-02", dataType = 0, flags = c("INCLUDE_NON_REGULAR", "INCLUDE_TRADE_CONDITION_INFO"))
+tradesData <- xythub.getTickData(source = "ACTIV", symbol = "ZAL.XE", day = "2016-09-02",
+                                 dataType = xythub.TICK_DATA_TYPE()$TRADES,
+                                 flags = c(xythub.TICK_DATA_FLAGS()$INCLUDE_NON_REGULAR,
+                                           xythub.TICK_DATA_FLAGS()$INCLUDE_TRADE_CONDITION_INFO))
 ```
 
 
 Retrieving quotes:
 
 ```
-quotesData <- xythub.getTickData (source = "ACTIV", symbol = "ZAL.XE", day = "2016-09-02", dataType = 1)
+quotesData <- xythub.getTickData(source = "ACTIV", symbol = "ZAL.XE", day = "2016-09-02",
+                                 dataType = xythub.TICK_DATA_TYPE()$QUOTES)
 ```
 
-Retrieving trades and quotes in one call. Since `TickDataRequest.Flag.INCLUDE_TRADE_CONDITION_INFO` is specified in flags trade condition information will be included in the output. It can be retrieved using same logic as in previous example:
+Retrieving trades and quotes in one call:
+
 ```
-tickData <- xythub.getTickData (source = "ACTIV", symbol = "ZAL.XE", day = "2016-09-02", dataType = 2)
+tickData <- xythub.getTickData(source = "ACTIV", symbol = "ZAL.XE", day = "2016-09-02",
+                               dataType = xythub.TICK_DATA_TYPE()$TRADES_AND_QUOTES)
 ```
-
-
-
 
 #### Input parameters
 
-| Parameter     | Type                | Required  | Description                                                     |
-|---------------|---------------------|-----------|-----------------------------------------------------------------|
-| source        | character           | x         | Data source.                                                    |
-| dataType      | character           | x         | Specifies if output should contain trades, quotes or both.      |
-| symbol        | character           | x         | Symbol.                                                         |
-| day           | POSIXlt / character | x         | Requested day.                                                  |
-| flags         | character           |           | List of flags.                                                  |
+| Parameter     | Type                   | Required  | Description                                                     |
+|---------------|------------------------|-----------|-----------------------------------------------------------------|
+| source        | character              | x         | Data source.                                                    |
+| dataType      | xythub.TICK_DATA_TYPE  | x         | Specifies if output should contain trades, quotes or both.      |
+| symbol        | character              | x         | Symbol.                                                         |
+| day           | POSIXlt / character    | x         | Requested day.                                                  |
+| flags         | xythub.TICK_DATA_FLAGS |           | List of flags.                                                  |
 
-Available dataType values:
+Available `xythub.TICK_DATA_TYPE()` values:
 
-| Value             | Description        |  
-|-------------------|--------------------|                                                                                                              
-| TRADES            | Trades only.       |
-| QUOTES            | Quotes only.       |
-| TRADES_AND_QUOTES | Trades and quotes. |
+| Value                        | Description        |  
+|------------------------------|--------------------|                                                                                                              
+| TRADES                       | Trades only.       |
+| QUOTES                       | Quotes only.       |
+| TRADES_AND_QUOTES            | Trades and quotes. |
 
-Available flags:
+Available `xythub.TICK_DATA_FLAGS()`:
 
 | Value                           | Description                                                                                                                                                                                                                                                          |
 |---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|                                                                                                                                                    |
@@ -205,19 +210,45 @@ Available flags:
 ### Trades and/or quotes aggregated
 
 Retrieves aggregated tick data (trades, quote, trades and quotes) for given symbol and filtering rules.
-The result contains one row for each time-bin in given time range. Time-bins size is determined via binSizeInSeconds parameter.
+The result contains one row for each time-bin in given time range. Time-bins size is determined via `binSizeInSeconds` parameter.
 In case there was no ticks in the market, the result still contains given bin with empty values.
+
+Retrieving hourly aggregated trades:
+
+```
+trades <- xythub.getTickAggregated(source = "ACTIV", symbol = "CL/17U.NXG", day = "2017-08-16",
+                                   binSizeInSeconds = 3600, # hourly
+                                   dataType = xythub.TICK_DATA_TYPE()$TRADES,
+                                   flags = c(xythub.TICK_DATA_FLAGS()$INCLUDE_NON_REGULAR,
+                                             xythub.TICK_DATA_FLAGS()$USE_MARKET_TS))
+```
+
+Retrieving quotes aggregated in 15 minute intervals:
+
+```
+quotes <- xythub.getTickAggregated(source = "ACTIV", symbol = "CL/17U.NXG", day = "2017-08-16",
+                                   binSizeInSeconds = 900, # 15 minutes
+                                   dataType = xythub.TICK_DATA_TYPE()$QUOTES)
+```
+
+Retrieving trades and quotes in one minute bins:
+
+```
+trades_and_quotes <- xythub.getTickAggregated(source = "ACTIV", symbol = "CL/17U.NXG", day = "2017-08-16"
+                                              dataType = xythub.TICK_DATA_TYPE()$TRADES_AND_QUOTES)
+```
+
 
 #### Input parameters
 
-| Parameter           | Type                | Required  | Description                                                     |
-|---------------------|---------------------|-----------|-----------------------------------------------------------------|
-| source              | character           | x         | Data source.                                                    |
-| dataType            | character           | x         | Specifies if output should contain trades, quotes or both.      |
-| symbol              | character           | x         | List of symbols.                                                |
-| day                 | POSIXlt / character | x         | Requested day.                                                  |
-| binSizeInSeconds    | integer             |           | Size of the time bins expressed in seconds.                     |
-| flags               | character           |           | List of flags.                                                  |
+| Parameter        | Type                   | Required  | Description                                                  |
+|------------------|------------------------|-----------|--------------------------------------------------------------|
+| source           | character              | x         | Data source.                                                 |
+| dataType         | xythub.TICK_DATA_TYPE  | x         | Specifies if output should contain trades, quotes or both.   |
+| symbol           | character              | x         | List of symbols.                                             |
+| day              | POSIXlt / character    | x         | Requested day.                                               |
+| binSizeInSeconds | integer                |           | Size of the time bins expressed in seconds.                  |
+| flags            | xythub.TICK_DATA_FLAGS |           | List of flags.                                               |
 
 Available Type and Flag values - as described [here](lib_r.html#input-parameters-2).
 
@@ -244,15 +275,43 @@ Available Type and Flag values - as described [here](lib_r.html#input-parameters
 
 Retrieves snapshot of tick data (trades, quote, trades and quotes) for given symbols and filtering rules.
 
+Retrieving trade snapshot:
+
+```
+trades <- xythub.getTickSnapshot(source = "ACTIV", symbols = "CL/17U.NXG", day = "2017-08-16", time = "12:00:00",
+                                 dataType = xythub.TICK_DATA_TYPE()$TRADES,
+                                 flags = c(xythub.TICK_DATA_FLAGS()$INCLUDE_NON_REGULAR,
+                                           xythub.TICK_DATA_FLAGS()$USE_MARKET_TS))
+```
+
+Retrieving quote snapshot:
+
+```
+quotes <- xythub.getTickSnapshot(source = "ACTIV", symbols = "CL/17U.NXG", day = "2017-08-16", time = "09:15:00",
+                                 dataType = xythub.TICK_DATA_TYPE()$QUOTES)
+```
+
+Retrieving trade and quote snapshot:
+
+
+```
+trades_and_quotes <- xythub.getTickSnapshot(source = "ACTIV", symbols = "CL/17U.NXG", day = "2017-08-16",
+                                            time = "10:03:00",
+                                            dataType = xythub.TICK_DATA_TYPE()$TRADES_AND_QUOTES,
+                                            flags = c(xythub.TICK_DATA_FLAGS()$INCLUDE_NON_REGULAR,
+                                                      xythub.TICK_DATA_FLAGS()$USE_MARKET_TS))
+```
+
 #### Input parameters
 
-| Parameter           | Type                | Required  | Description                                                     |
-|---------------------|---------------------|-----------|-----------------------------------------------------------------|
-| source              | character           | x         | Data source.                                                    |
-| dataType            | character           | x         | Specifies if output should contain trades, quotes or both.      |
-| symbols             | character           | x         | List of symbols.                                                |
-| day                 | POSIXlt / character | x         | Requested day.                                                  |
-| flags               | character           |           | List of flags.                                                  |
+| Parameter           | Type                 | Required  | Description                                                     |
+|---------------------|----------------------|-----------|-----------------------------------------------------------------|
+| source              | character            | x         | Data source.                                                    |
+| dataType            | character            | x         | Specifies if output should contain trades, quotes or both.      |
+| symbols             | character            | x         | List of symbols.                                                |
+| day                 | POSIXlt / character  | x         | Requested day.                                                  |
+| time                | difftime / character | x         | Timestamp of the requested snapshot.                            |
+| flags               | character            |           | List of flags.                                                  |
 
 Available Type and Flag values - as described [here](lib_r.html#input-parameters-2).
 
@@ -352,8 +411,8 @@ eodData <- xythub.getEndOfDayData(source = "ACTIV", symbols = "DBK.XE", firstDay
 |---------------|---------------------|-----------|-------------------------------------- -------|
 | source        | character           | x         | Data source.                                 |
 | symbols       | character           | x         | List of symbols.                             |
-| first_day     | POSIXlt / character | x         | First requested day.                         |
-| last_day      | POSIXlt / character | x         | Last requested day.                          |
+| firstDay      | POSIXlt / character | x         | First requested day.                         |
+| lastDay       | POSIXlt / character | x         | Last requested day.                          |
 
 #### Output columns
 
@@ -373,7 +432,7 @@ eodData <- xythub.getEndOfDayData(source = "ACTIV", symbols = "DBK.XE", firstDay
 Retrieving settlement prices for given list of derivative symbols:
 
 ```
-settlementData <- xythub.getSettlementPrices(source = "ACTIV", symbols = "DBK.XE", first_day = "2016-10-04", last_day = "2016-11-04")
+settlementData <- xythub.getSettlementPrices(source = "ACTIV", symbols = "DBK.XE", firstDay = "2016-10-04", lastDay = "2016-11-04")
 ```
 
 #### Input parameters
@@ -382,8 +441,8 @@ settlementData <- xythub.getSettlementPrices(source = "ACTIV", symbols = "DBK.XE
 |---------------|---------------------|-----------|---------------------------------------------------------|
 | source        | character           | x         | Data source.                                            |
 | symbols       | character           | x         | List of symbols.                                        |
-| first_day     | POSIXlt / character | x         | First requested day.                         |
-| last_day      | POSIXlt / character | x         | Last requested day.                          |
+| firstDay      | POSIXlt / character | x         | First requested day.                         |
+| lastDay       | POSIXlt / character | x         | Last requested day.                          |
 
 
 #### Output columns
@@ -498,7 +557,7 @@ Additional columns available for options:
 Retrieving instrument status:
 
 ```
-statuses <- xythub.getInstrumentStatus (source = "ACTIV", symbols = "DBK.XE", day = "2016-09-01")
+statuses <- xythub.getInstrumentStatus(source = "ACTIV", symbols = "DBK.XE", day = "2016-09-01")
 ```
 
 #### Input parameters
@@ -524,7 +583,7 @@ statuses <- xythub.getInstrumentStatus (source = "ACTIV", symbols = "DBK.XE", da
 Retrieving tick rules:
 
 ```
-tickRules <- xythub.getTickRules (source = "ACTIV", symbols = "DBK.XE", day = "2016-09-20")
+tickRules <- xythub.getTickRules(source = "ACTIV", symbols = "DBK.XE", day = "2016-09-20")
 ```
 
 #### Input parameters
@@ -549,29 +608,30 @@ tickRules <- xythub.getTickRules (source = "ACTIV", symbols = "DBK.XE", day = "2
 Retrieve option or future chain for given chain identifier (either option stem or underlying) and given exchange and day:
 
 ```
-result <- xythub.getChain(source = "ACTIV", chainType = "OPTIONS", symbol = "CL", exchange = "OPRA_COMPOSITE", day = "2017-08-15");
+result <- xythub.getChain(source = "ACTIV", symbol = "CL", exchange = "OPRA_COMPOSITE",
+                          chainType = xythub.CHAIN_TYPE()$OPTIONS, day = "2017-08-15")
 ```
 
 #### Input parameters
 
-| Parameter     | Type                | Required  | Description                                                                |
-|---------------|---------------------|-----------|----------------------------------------------------------------------------|
-| source        | character           | x         | Data source.                                                               |
-| chainType     | character           | x         | Specifies if output should contain options, futures or future options.     |
-| symbol        | character           | x         | Stem or underlying symbol.                                                 |
-| exchange      | character           | x         | Exchange identifier.                                                       |
-| day           | POSIXlt / character | x         | Requested day.                                                             |
+| Parameter   | Type                | Required  | Description                                                             |
+|-------------|---------------------|-----------|-------------------------------------------------------------------------|
+| source      | character           | x         | Data source.                                                            |
+| chainType   | xythub.CHAIN_TYPE   | x         | Specifies if output should contain options, futures or future options.  |
+| symbol      | character           | x         | Stem or underlying symbol.                                              |
+| exchange    | character           | x         | Exchange identifier.                                                    |
+| day         | POSIXlt / character | x         | Requested day.                                                          |
 
 #### Output columns
 
 | Column           | Type       | Description                |
 |------------------|------------|----------------------------|
-| chainSymbol      | character  | Chain identifier.          |
+| chain_symbol     | character  | Chain identifier.          |
 | symbol           | character  | Chain member symbol.       |
 | underlying       | character  | Underlying identifier.     |
 | name             | character  | Chain name.                |
 
-Available `ChainType` values:
+Available `xythub.CHAIN_TYPE()` values:
 
 | Type                | Description        |  
 |---------------------|--------------------|                                                   
@@ -593,7 +653,7 @@ The input parameters, query logic and output content is specified by the given `
 |---------------|------------------------|-----------|-----------------------------------------------------------------|
 | source        | character              | x         | Data source.                                                    |
 | request       | character              | x         | Custom-defined request name.                                    |
-| parameters    | dict[character -> any] | x         | Map with input parameters required for given request.           |
+| parameters    | c(xythub.toParameter)  | x         | Vector with input parameters required for given request.        |
 
 #### Output columns
 
