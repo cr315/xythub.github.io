@@ -615,7 +615,7 @@ Retrieving instrument status:
 | time                           | pd.Timedelta   | Time.                                                  |
 | instrument_status              | string         | Instrument status.                                     |
 | instrument_status_description  | string         | Instrument status description.                         |
-| is_continuous_session          | bool           | Is continuous session.                                 |
+| continuous_session             | bool           | Is continuous session.                                 |
 
 
 ### Tick rules
@@ -745,16 +745,7 @@ Troubleshooting
 
 ### Proxies
 
-If you need to use a proxy, you can configure the `ApiSettings.proxies` property:
-
-    proxies = {
-      'http': 'http://10.10.1.10:3128',
-      'https': 'http://10.10.1.10:1080',
-    }
-
-    ApiSettings.proxies = proxies
-
-You can also configure proxies by setting the environment variables `HTTP_PROXY` and `HTTPS_PROXY`.
+If you need to use a proxy, set the environment variables `HTTP_PROXY` and `HTTPS_PROXY`.
 
 Linux:
 
@@ -767,9 +758,7 @@ Windows:
     $ set HTTPS_PROXY="http://10.10.1.10:1080"
 
 
-To use HTTP Basic Auth with your proxy, use the `http://user:password@host/` syntax:
-
-    proxies = {'http': 'http://user:pass@10.10.1.10:3128/'}
+To use HTTP Basic Auth with your proxy, use the `http://user:password@host/` syntax.
 
 
 Development

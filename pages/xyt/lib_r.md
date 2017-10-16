@@ -575,7 +575,7 @@ statuses <- xythub.getInstrumentStatus(source = "ACTIV", symbols = "DBK.XE", day
 | time                           | POSIXlt    | Timestamp.                                     |
 | instrument_status              | character  | Instrument status.                             |
 | instrument_status_description  | character  | Instrument status description.                 |
-| is_continuous_session          | logical    | Is continuous session.                         |
+| continuous_session             | logical    | Is continuous session.                         |
 
 ### Tick rules
 

@@ -643,7 +643,7 @@ var statuses = client.InstrumentStatus("SOURCE", symbols, day: new DateTime(2016
 | time                           | TimeSpan  | Isin.                                                  |
 | instrument_status              | String    | Instrument status.                                     |
 | instrument_status_description  | String    | Instrument status description.                         |
-| is_continuous_session          | bool      | Is continuous session.                                 |
+| continuous_session             | bool      | Is continuous session.                                 |
 
 
 ### Tick rules

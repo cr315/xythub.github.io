@@ -628,7 +628,7 @@ InstrumentStatusData statuses = client.getInstrumentStatus("ACTIV", symbols, "20
 | time                           | Time    | Isin.                                                  |
 | instrument_status              | String  | Instrument status.                                     |
 | instrument_status_description  | String  | Instrument status description.                         |
-| is_continuous_session          | Boolean | Is continuous session.                                 |
+| continuous_session             | Boolean | Is continuous session.                                 |
 
 ### Tick rules
 
