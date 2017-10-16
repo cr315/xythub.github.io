@@ -203,7 +203,6 @@ Available Flag values:
 | IncludeNonRegular               | Specifies if non-regular trades should be included in the output.                                                                                                                                                                                                    |
 | IncludeContinuousSessionOnly    | Specifies if only continuous session messages should be included in the result set. This covers filtering by trade conditions assigned to continuous session for trades and instrument status filtering for quotes.                                                  |
 | ExcludeCancelledTrades 	        | Specifies if canceled trades are removed from the output. Functionality removes only canceled trades that are no corrections.                                                                                                                                        |
-| NanosecondsTimestamp	          | Use nanoseconds precision, if available, to represent time.                                                                                                                                                                                                          |
 
 #### Output columns
 

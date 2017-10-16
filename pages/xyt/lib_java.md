@@ -15,7 +15,7 @@ In order to use big xyt Cloud Platform Java Client add the following lines to yo
 <dependency>
   <groupId>big-xyt</groupId>
   <artifactId>xyt-hub</artifactId>
-  <version>1.1.0</version>
+  <version>X.Y.Z</version>
  </dependency>
 ```
 
@@ -211,7 +211,6 @@ Available Flag values:
 | INCLUDE_NON_REGULAR             | Specifies if non-regular trades should be included in the output.                                                                                                                                                                                                    |
 | INCLUDE_CONTINUOUS_SESSION_ONLY | Specifies if only continuous session messages should be included in the result set. This covers filtering by trade conditions assigned to continuous session for trades and instrument status filtering for quotes.                                                  |
 | EXCLUDE_CANCELLED_TRADES 	      | Specifies if canceled trades are removed from the output. Functionality removes only canceled trades that are no corrections.                                                                                                                                        |
-| NANOSECONDS_TIMESTAMP	          | Use nanoseconds precision, if available, to represent time.                                                                                                                                                                                                          |
 
 #### Output columns
 
@@ -695,7 +694,7 @@ ChainData chainMembers = client.getChain("ACTIV", "CL", "NYMEX", "2017.08.15", C
 
 | Column           | Type       | Description                |
 |------------------|------------|----------------------------|
-| chainSymbol      | String     | Chain identifier.          |
+| chain_symbol     | String     | Chain identifier.          |
 | symbol           | String     | Chain member symbol.       |
 | underlying       | String     | Underlying identifier.     |
 | name             | String     | Chain name.                |

@@ -12,7 +12,7 @@ Installation
 
 To install package from file:
 
-`$ pip install xyt-hub-1.1.0.tar.gz`
+`$ pip install xyt-hub-X.Y.Z.tar.gz`
 
 Configuration
 -------------
@@ -205,7 +205,6 @@ Available TickDataFlag values:
 | INCLUDE_NON_REGULAR             | Specifies if non-regular trades should be included in the output.                                                                                                                                                                                                    |
 | INCLUDE_CONTINUOUS_SESSION_ONLY | Specifies if only continuous session messages should be included in the result set. This covers filtering by trade conditions assigned to continuous session for trades and instrument status filtering for quotes.                                                  |
 | EXCLUDE_CANCELLED_TRADES 	      | Specifies if canceled trades are removed from the output. Functionality removes only canceled trades that are no corrections.                                                                                                                                        |
-| NANOSECONDS_TIMESTAMP	          | Use nanoseconds precision, if available, to represent time.                                                                                                                                                                                                          |
 
 #### Output columns
 

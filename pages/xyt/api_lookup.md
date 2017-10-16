@@ -11,7 +11,7 @@ folder: xyt
 # <a class="anchor" name="api_lookup.proto"></a> api_lookup.proto
 API contract file for lookup service.
 
-API version: 1.1.0
+API version: 1.1.2
 
 
 ## <a class="anchor" name="api_lookup.proto.types"></a> Types
@@ -203,7 +203,7 @@ Response from service endpoint: `/overview/entities`
 Defines common data types used by Cloud Platform APIs.
 
 
-API version: `1.1.0`
+API version: `1.1.2`
 
 
 ## <a class="anchor" name="types.proto.types"></a> Types
@@ -215,7 +215,7 @@ Request header allows client to pass additional information with the request.
 | Field | Type | Id  | Description |
 | ----- | ---- | --- | ----------- |
 | reference_id | [UUID](#types.proto.UUID) | 1 | Cross reference identifier assigned to the request by the client. |
-| nanoseconds_representation | bool | 2 | If set to true, service uses nanosecond time resolution where applicable. |
+| raw_time | bool | 5 | If set to `true`, date/time values are represented as intger values since epoch see [Value](#types.proto.Value) for details. Using raw time values yields with better performance than using boxed date/time objects. |
 | page_limit_present | one of |  |  |
 | page_limit_present.page_limit | int64 | 3 | Size of the single page. |
 | page_start_present | one of |  |  |
@@ -288,7 +288,10 @@ an integer, a double, a string, a boolean, a time, a date or a list of values.
 | type.bool_value | bool | 4 |  |
 | type.date_value | [Date](#types.proto.Date) | 5 |  |
 | type.time_value | [Time](#types.proto.Time) | 6 |  |
-| type.timestamp_value | [Timestamp](#types.proto.Timestamp) | 7 |  |
+| type.days_value | int32 | 8 | Number of days since 1970.01.01. Represents date, if `raw_times` is set to `true` in [RequestHeader](#types.proto.RequestHeader). |
+| type.milliseconds_value | int32 | 9 | Number of milliseconds since midnight. Represent time, if `raw_times` is set to `true` in [RequestHeader](#types.proto.RequestHeader). |
+| type.nanoseconds_value | int64 | 10 | Number of nanoseconds since midnight. Represent time, if `raw_times` is set to `true` in [RequestHeader](#types.proto.RequestHeader). |
+| type.object | [ValueObject](#types.proto.ValueObject) | 14 |  |
 | type.list | [ValueList](#types.proto.ValueList) | 15 |  |
 
 ### <a class="anchor" name="types.proto.MixedList"></a> Message: MixedList
@@ -315,8 +318,19 @@ Represents a dynamically typed list.
 | list_type.bool_list | [BoolList](#types.proto.BoolList) | 4 |  |
 | list_type.date_list | [DateList](#types.proto.DateList) | 5 |  |
 | list_type.time_list | [TimeList](#types.proto.TimeList) | 6 |  |
-| list_type.timestamp_list | [TimestampList](#types.proto.TimestampList) | 7 |  |
+| list_type.days_list | [DaysList](#types.proto.DaysList) | 8 |  |
+| list_type.milliseconds_list | [MillisecondsList](#types.proto.MillisecondsList) | 9 |  |
+| list_type.nanoseconds_list | [NanosecondsList](#types.proto.NanosecondsList) | 10 |  |
 | list_type.mixed_list | [MixedList](#types.proto.MixedList) | 15 |  |
+
+### <a class="anchor" name="types.proto.ValueObject"></a> Message: ValueObject
+
+Represents an object with named fields.
+
+
+| Field | Type | Id  | Description |
+| ----- | ---- | --- | ----------- |
+| fields | map < string,  [Value](#types.proto.Value) >  | 1 |  |
 
 ### <a class="anchor" name="types.proto.Table"></a> Message: Table
 
@@ -381,14 +395,32 @@ Represents a list of time values.
 | ----- | ---- | --- | ----------- |
 | values | repeated  [Time](#types.proto.Time) | 1 |  |
 
-### <a class="anchor" name="types.proto.TimestampList"></a> Message: TimestampList
+### <a class="anchor" name="types.proto.DaysList"></a> Message: DaysList
 
-Represents a list of timestamp values.
+Represents a list of days (since 1970.01.01) values.
 
 
 | Field | Type | Id  | Description |
 | ----- | ---- | --- | ----------- |
-| values | repeated  [Timestamp](#types.proto.Timestamp) | 1 |  |
+| values | repeated  int32 | 1 |  |
+
+### <a class="anchor" name="types.proto.MillisecondsList"></a> Message: MillisecondsList
+
+Represents a list of milliseconds (since midnight) values.
+
+
+| Field | Type | Id  | Description |
+| ----- | ---- | --- | ----------- |
+| values | repeated  int32 | 1 |  |
+
+### <a class="anchor" name="types.proto.NanosecondsList"></a> Message: NanosecondsList
+
+Represents a list of nanoseconds (since midnight) values.
+
+
+| Field | Type | Id  | Description |
+| ----- | ---- | --- | ----------- |
+| values | repeated  int64 | 1 |  |
 
 ### <a class="anchor" name="types.proto.ProductType"></a> Enum: ProductType
 
