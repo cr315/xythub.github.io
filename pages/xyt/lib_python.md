@@ -33,9 +33,9 @@ Browsing data catalogue
 
 Listing of available sources:
 
-    from xyt import ApiSettings
+    from xyt import lookup_sources
 
-    ApiSettings.lookup_sources()
+    sources = lookup_sources()
 
 
 ### Exchanges lookup
