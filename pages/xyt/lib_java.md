@@ -95,16 +95,12 @@ More advanced search limiting to specific exchanges on the data source and speci
 
 ```
 String pattern = "zal";
-List<String> exchanges = new ArrayList<String>();
-exchanges.add("XETRA");
-exchanges.add("BXTR");
-
-List<ItemType> itemTypes = new ArrayList<ItemType>();
-itemTypes.add(ItemType.INDIVIDUAL_ITEM);
+List<String> exchanges = Arrays.asList("XETRA", "BXTR");
+List<ItemType> itemTypes = Arrays.asList(ItemType.INDIVIDUAL_ITEM);
 
 SymbolData foundSymbols = client.lookupSymbols("ACTIV", pattern, exchanges,
-                                               new ArrayList<String>(), new ArrayList<String>(), new ArrayList<ProductType>(),
-                                               itemTypes, ProtoUtils.dateFromString("2016.09.01"), ProtoUtils.dateFromString("2016.09.02"));
+                                               new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                                               itemTypes, "2016.09.01", "2016.09.02");
 ```
 
 #### Input parameters
@@ -151,11 +147,12 @@ Retrieves tick data (trades, quote, trades and quotes) for given symbol and filt
 Retrieving all trades (including non-regular) with trade corrections applied:
 
 ```
-List<TickDataRequest.Flag> flags = new ArrayList<TickDataRequest.Flag>();
-flags.add(TickDataRequest.Flag.INCLUDE_NON_REGULAR);
-flags.add(TickDataRequest.Flag.INCLUDE_TRADE_CONDITION_INFO);
+List<TickDataRequest.Flag> flags = Arrays.asList(TickDataRequest.Flag.INCLUDE_NON_REGULAR,
+                                                 TickDataRequest.Flag.INCLUDE_TRADE_CONDITION_INFO);
 
-TickData tickData = client.getTickData("ACTIV", "ZAL.XE", "2016.09.02", "09:00:00.000", "09:02:00.000", TickDataRequest.Type.TRADES, flags);
+TickData tickData = client.getTickData("ACTIV", "ZAL.XE", "2016.09.02",
+                                       "09:00:00.000", "09:02:00.000",
+                                       TickDataRequest.Type.TRADES, flags);
 ```
 
 Extracting trade condition mapping from trades:
@@ -167,18 +164,20 @@ TradeConditionData tradeConditions = tickData.getTradeConditions();
 Retrieving quotes:
 
 ```
-TickData quoteData = client.getTickData("ACTIV", "ZAL.XE", "2016.09.02", "09:00:00.000", "09:02:00.000", TickDataRequest.Type.QUOTES, new ArrayList<TickDataRequest.Flag>());
+TickData quoteData = client.getTickData("ACTIV", "ZAL.XE", "2016.09.02",
+                                        "09:00:00.000", "09:02:00.000",
+                                        TickDataRequest.Type.QUOTES, new ArrayList<TickDataRequest.Flag>());
 ```
 
 Retrieving trades and quotes in one call. Since `TickDataRequest.Flag.INCLUDE_TRADE_CONDITION_INFO` is specified in flags trade condition information will be included in the output. It can be retrieved using same logic as in previous example:
 
 ```
-List<TickDataRequest.Flag> flags = new ArrayList<TickDataRequest.Flag>();
-flags.add(TickDataRequest.Flag.INCLUDE_NON_REGULAR);
-flags.add(TickDataRequest.Flag.INCLUDE_TRADE_CONDITION_INFO);
+List<TickDataRequest.Flag> flags = Arrays.asList(TickDataRequest.Flag.INCLUDE_NON_REGULAR,
+                                                 TickDataRequest.Flag.INCLUDE_TRADE_CONDITION_INFO);
 
-TickData taqData = client.getTickData("ACTIV", "ZAL.XE", "2016.09.02", "09:00:00.000", "09:02:00.000",
-                    TickDataRequest.Type.TRADES_AND_QUOTES, flags);
+TickData taqData = client.getTickData("ACTIV", "ZAL.XE", "2016.09.02",
+                                      "09:00:00.000", "09:02:00.000",
+                                      TickDataRequest.Type.TRADES_AND_QUOTES, flags);
 ```
 
 #### Input parameters
@@ -236,28 +235,31 @@ In case there was no ticks in the market, the result still contains given bin wi
 Retrieving hourly aggregated trades:
 
 ```
-List<TickDataRequest.Flag> flags = new ArrayList<TickDataRequest.Flag>();
-flags.add(TickDataRequest.Flag.INCLUDE_NON_REGULAR);
-flags.add(TickDataRequest.Flag.USE_MARKET_TS);
+List<TickDataRequest.Flag> flags = Arrays.asList(TickDataRequest.Flag.INCLUDE_NON_REGULAR,
+                                                 TickDataRequest.Flag.USE_MARKET_TS);
 
 // get hourly aggregated data
 int binSizeInSeconds = 3600;
 
-TickAggregatedData tickAggregated = client.getTickAggregated("ACTIV", TickDataRequest.Type.TRADES, "CL/17U.NXG", "2017.08.16", binSizeInSeconds, flags);
+TickAggregatedData tickAggregated = client.getTickAggregated("ACTIV", "CL/17U.NXG", "2017.08.16",
+                                                             binSizeInSeconds, TickDataRequest.Type.TRADES, flags);
 ```
 
 Retrieving quotes aggregated in 15 minute intervals:
 
 ```
 int binSizeInSeconds = 900; // 15 minutes
-TickAggregatedData quotesAggregated = client.getTickAggregated("ACTIV", TickDataRequest.Type.QUOTES, "CL/17U.NXG", "2017.08.16", binSizeInSeconds, new ArrayList<TickDataRequest.Flag>());
+TickAggregatedData quotesAggregated = client.getTickAggregated("ACTIV", "CL/17U.NXG", "2017.08.16",
+                                                               binSizeInSeconds, TickDataRequest.Type.QUOTES,
+                                                               new ArrayList<TickDataRequest.Flag>());
 ```
 
 Retrieving trades and quotes in one minute bins:
 
 ```
-// we use here default flags for trades(EXCLUDE_CANCELLED_TRADES,USE_MARKT_TS,INCLUDE_NON_REGULAR) and default one-minute binning.
-TickAggregatedData tradesAndQuotesAggregated = client.getTickAggregated("ACTIV", TickDataRequest.Type.TRADES_AND_QUOTES, "CL/17U.NXG", "2017.08.16");
+// use default flags (EXCLUDE_CANCELLED_TRADES, USE_MARKT_TS, INCLUDE_NON_REGULAR) and default one-minute binning
+TickAggregatedData taqAggregated = client.getTickAggregated("ACTIV", "CL/17U.NXG", "2017.08.16",
+                                                            TickDataRequest.Type.TRADES_AND_QUOTES);
 ```
 
 #### Input parameters
@@ -302,36 +304,39 @@ Retrieves snapshot of tick data (trades, quote, trades and quotes) for given sym
 Retrieving trade snapshot at 12:00:00.00:
 
 ```
-List<String> symbols = new ArrayList<String>();
-symbols.add("CL/17U.NXG");
-List<TickDataRequest.Flag> flags = new ArrayList<TickDataRequest.Flag>();
-flags.add(TickDataRequest.Flag.INCLUDE_NON_REGULAR);
-flags.add(TickDataRequest.Flag.USE_MARKET_TS);
+List<String> symbols = Arrays.asList("CL/17U.NXG");
 
-TickSnapshotData tradeSnapshot = client.getTickSnapshot("ACTIV", TickDataRequest.Type.TRADES, symbols, "2017.08.16", "12:00:00.000", flags);
+List<TickDataRequest.Flag> flags = Arrays.asList(TickDataRequest.Flag.INCLUDE_NON_REGULAR,
+                                                 TickDataRequest.Flag.USE_MARKET_TS);
+
+TickSnapshotData tradeSnapshot = client.getTickSnapshot("ACTIV", symbols,
+                                                        "2017.08.16", "12:00:00.000",
+                                                        TickDataRequest.Type.TRADES, flags);
 ```
 
 Retrieving quote snapshot at 09:15:00:
 
 ```
-List<String> symbols = new ArrayList<String>();
-symbols.add("CL/17U.NXG");
+List<String> symbols = Arrays.asList("CL/17U.NXG");
 
 List<TickDataRequest.Flag> flags = new ArrayList<TickDataRequest.Flag>();
-TickSnapshotData quoteSnapshot = client.getTickSnapshot("ACTIV", TickDataRequest.Type.QUOTES, symbols, "2017.08.16", "09:15:00.000", flags);
+
+TickSnapshotData quoteSnapshot = client.getTickSnapshot("ACTIV", symbols,
+                                                        "2017.08.16", "09:15:00.000",
+                                                        TickDataRequest.Type.QUOTES, flags);
 ```
 
 Retrieving trade and quote snapshot at 10:03:00:
 
 ```
-List<String> symbols = new ArrayList<String>();
-symbols.add("CL/17U.NXG");
+List<String> symbols = Arrays.asList("CL/17U.NXG");
 
-List<TickDataRequest.Flag> flags = new ArrayList<TickDataRequest.Flag>();
-flags.add(TickDataRequest.Flag.INCLUDE_NON_REGULAR);
-flags.add(TickDataRequest.Flag.USE_MARKET_TS);
+List<TickDataRequest.Flag> flags = Arrays.asList(TickDataRequest.Flag.INCLUDE_NON_REGULAR,
+                                                 TickDataRequest.Flag.USE_MARKET_TS);
 
-TickSnapshotData tradeAndQuoteSnapshot = client.getTickSnapshot("ACTIV", TickDataRequest.Type.TRADES_AND_QUOTES, symbols, "2017.08.16", "10:03:00.000", flags);
+TickSnapshotData taqSnapshot = client.getTickSnapshot("ACTIV", symbols,
+                                                      "2017.08.16", "10:03:00.000",
+                                                      TickDataRequest.Type.TRADES_AND_QUOTES, flags);
 ```
 
 #### Input parameters
@@ -367,8 +372,8 @@ Available Type and Flag values - as described [here](lib_java.html#input-paramet
 Retrieves orders (Level 3 data) for given symbols and filtering rules:
 
 ```
-List<String> symbols = new ArrayList<String>();
-symbols.add("DBK.XE");
+List<String> symbols = Arrays.asList("DBK.XE");
+
 OrderData orderData = client.getOrderData("ACTIV", symbols, "2016.10.04", "09:00:00.000", "09:01:30.000");
 ```
 
@@ -404,8 +409,8 @@ OrderData orderData = client.getOrderData("ACTIV", symbols, "2016.10.04", "09:00
 Retrieves auction for given symbols and filtering rules:
 
 ```
-List<String> symbols = new ArrayList<String>();
-symbols.add("DBK.XE");
+List<String> symbols = Arrays.asList("DBK.XE");
+
 AuctionData auctionData = client.getAuctionData("ACTIV", symbols, "2016.10.04");
 ```
 
@@ -444,8 +449,8 @@ AuctionData auctionData = client.getAuctionData("ACTIV", symbols, "2016.10.04");
 Retrieving end of day data:
 
 ```
-List<String> symbols = new ArrayList<String>();
-symbols.add("DBK.XE");
+List<String> symbols = Arrays.asList("DBK.XE");
+
 EndOfDayData eodData = client.getEndOfDayData("ACTIV", symbols, "2016.10.04", "2017.10.04");
 ```
 
@@ -476,8 +481,8 @@ EndOfDayData eodData = client.getEndOfDayData("ACTIV", symbols, "2016.10.04", "2
 Retrieves settlement prices for given list of derivative symbols:
 
 ```
-List<String> symbols = new ArrayList<String>();
-symbols.add("DBK.XE");
+List<String> symbols = Arrays.asList("DBK.XE");
+
 SettlementPriceData prices = client.getSettlementPrices("ACTIV", symbols, "2016.10.04", "2016.11.04");
 ```
 
@@ -513,8 +518,8 @@ Retrieves reference data for given symbols and date.
 Note searching by pattern and retrieval of basing reference data is possible via lookupSymbols method.
 
 ```
-List<String> symbols = new ArrayList<String>();
-symbols.add("C/17Z.NL");
+List<String> symbols = Arrays.asList("C/17Z.NL");
+
 ReferenceData referenceData = client.getReferenceData("ACTIV", symbols, "2016.09.01");
 ```
 
@@ -606,8 +611,8 @@ Additional columns available for options:
 Retrieving instrument status:
 
 ```
-List<String> symbols = new ArrayList<String>();
-symbols.add("DBK.XE");
+List<String> symbols = Arrays.asList("DBK.XE");
+
 InstrumentStatusData statuses = client.getInstrumentStatus("ACTIV", symbols, "2016.09.02");
 ```
 
@@ -635,8 +640,8 @@ InstrumentStatusData statuses = client.getInstrumentStatus("ACTIV", symbols, "20
 Retrieving tick rules:
 
 ```
-List<String> symbols = new ArrayList<String>();
-symbols.add("DBK.XE");
+List<String> symbols = Arrays.asList("DBK.XE");
+
 TickRulesData tickRules = client.getTickRules("ACTIV", symbols, "2016.09.20");
 ```
 
