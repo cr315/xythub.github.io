@@ -334,7 +334,7 @@ Available Type and Flag values - as described [here](lib_r.html#input-parameters
 Retrieves orders (Level 3 data) for given symbols and filtering rules:
 
 ```
-orderData <- xythub.getOrderData (source = "ACTIV", symbols = "DBK.XE", day = "2016-10-04")
+orderData <- xythub.getOrderData(source = "ACTIV", symbols = "DBK.XE", day = "2016-10-04")
 ```
 
 #### Input parameters
@@ -365,7 +365,7 @@ orderData <- xythub.getOrderData (source = "ACTIV", symbols = "DBK.XE", day = "2
 Retrieves auction for given symbols and filtering rules:
 
 ```
-auctionData <- xythub.getAuctionData (source = "ACTIV", symbols = "DBK.XE", day = "2016-10-04")
+auctionData <- xythub.getAuctionData(source = "ACTIV", symbols = "DBK.XE", day = "2016-10-04")
 ```
 
 #### Input parameters
@@ -401,7 +401,8 @@ auctionData <- xythub.getAuctionData (source = "ACTIV", symbols = "DBK.XE", day 
 Retrieving end of day data:
 
 ```
-eodData <- xythub.getEndOfDayData(source = "ACTIV", symbols = "DBK.XE", firstDay = "2016-10-04", lastDay = "2017-10-04")
+eodData <- xythub.getEndOfDayData(source = "ACTIV", symbols = "DBK.XE",
+                                  firstDay = "2016-10-04", lastDay = "2017-10-04")
 ```
 
 #### Input parameters
@@ -431,7 +432,8 @@ eodData <- xythub.getEndOfDayData(source = "ACTIV", symbols = "DBK.XE", firstDay
 Retrieving settlement prices for given list of derivative symbols:
 
 ```
-settlementData <- xythub.getSettlementPrices(source = "ACTIV", symbols = "DBK.XE", firstDay = "2016-10-04", lastDay = "2016-11-04")
+settlementData <- xythub.getSettlementPrices(source = "ACTIV", symbols = "DBK.XE",
+                                             firstDay = "2016-10-04", lastDay = "2016-11-04")
 ```
 
 #### Input parameters
