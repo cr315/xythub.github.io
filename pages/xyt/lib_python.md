@@ -745,20 +745,27 @@ Troubleshooting
 
 ### Proxies
 
-If you need to use a proxy, set the environment variables `HTTP_PROXY` and `HTTPS_PROXY`.
+HTTP proxy can be set on default client object:
 
-Linux:
+    proxies = {
+        'https': 'http://proxy.mydomain.com:8888'
+    }
 
-    $ export HTTP_PROXY="http://10.10.1.10:3128"
-    $ export HTTPS_PROXY="http://10.10.1.10:1080"
+    XytClient.default().proxies=proxies
 
-Windows:
+    symbols = lookup_symbols(source='ACTIV')
 
-    $ set HTTP_PROXY="http://10.10.1.10:3128"
-    $ set HTTPS_PROXY="http://10.10.1.10:1080"
+
+You can also create client object and pass it as a parameter to API function:
+
+    client = XytClient(user_id=USERNAME, user_password=PASSWORD, proxies=proxies)
+
+    symbols = lookup_symbols(connection=client, source='ACTIV')
 
 
 To use HTTP Basic Auth with your proxy, use the `http://user:password@host/` syntax.
+
+Read more on [Python requests proxies](http://docs.python-requests.org/en/master/user/advanced/#proxies).
 
 
 Development
@@ -803,6 +810,5 @@ License
 -------
 
 [Apache License Version 2.0](http://opensource.org/licenses/Apache-2.0)
-
 
 {% include links.html %}

@@ -19,7 +19,7 @@ Library initialization
 ----------------------
 ```
 library("xythub")
-xythub.configure("your@user.com", "yourpassword")
+xythub.configure("your@username.com", "password")
 ```
 
 Browsing data catalogue
@@ -662,6 +662,14 @@ Output columns are dependent on the selected request.
 
 Troubleshooting
 ---------------
+
+### Proxies
+
+HTTP proxy can be set while configuring library settings:
+
+```
+xythub.configure("your@username.com", "password", proxy = httr::use_proxy("proxy.mydomain.com", 8080))
+```
 
 
 License

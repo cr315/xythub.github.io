@@ -741,13 +741,24 @@ The input parameters, query logic and output content is specified by the given `
 | Parameter    | Type                         | Required  | Description                                                     |
 |--------------|------------------------------|-----------|-----------------------------------------------------------------|
 | source       | String                       | x         | Data source.                                                    |
-| request      | String                       | x         | Custom-defined request nme.                                     |
+| request      | String                       | x         | Custom-defined request name.                                    |
 | parameters   | Dictionary\<String, Object\> | x         | Dictionary with input parameters required for given request.    |
 
 #### Output columns
 
 Output columns are dependent on the selected request.
 
+Troubleshooting
+---------------
+
+### Proxies
+
+HTTP proxy can be set while constructing client object:
+
+```
+IWebProxy proxy = new WebProxy("proxy.mydomain.com", 8080);
+XytHubClient client = new XytHubClient("your@username.com", "password", proxy: proxy);
+```
 
 License
 -------

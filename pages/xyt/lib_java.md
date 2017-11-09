@@ -736,7 +736,21 @@ Output columns are dependent on the selected request.
 
 Troubleshooting
 ---------------
-SSL certificates.
+
+### Proxies
+
+HTTP proxy can be set while constructing client object:
+
+```
+Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("proxy.mydomain.com", 8080));
+XytHubClient client = new XytHubClient("your@username.com", "password",
+                                       XytHubClient.DEFAULT_CONNECT_TIMEOUT, XytHubClient.DEFAULT_READ_TIMEOUT,
+                                       proxy);
+```
+
+Read more about [Java proxies](https://docs.oracle.com/javase/6/docs/technotes/guides/net/proxies.html).
+
+### SSL certificates.
 
 Oracle JDK/JRE prior to 8u101 doesn't trust Let's Encrypt certificates which are used by big xyt Cloud Platform.
 
