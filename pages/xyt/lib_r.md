@@ -22,6 +22,17 @@ library("xythub")
 xythub.configure("your@username.com", "password")
 ```
 
+Data representation
+-------------------
+
+Retrieved data is represented as S3 class instances, with following attributes:
+
+| Attribute     | Description                                                  |
+|---------------|--------------------------------------------------------------|
+| data          | Data frame representation of the result.                     |
+| message       | Deserialized protobuf message.                               |
+
+
 Browsing data catalogue
 -----------------------
 
