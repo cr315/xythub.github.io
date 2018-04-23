@@ -13,6 +13,10 @@ In order to use big xyt Cloud Platform C# Client add a reference in C#:
 1. In `Solution Explorer`, right-click the project node and click `Add Reference`.
 2. In the `Add Reference` dialog box, select the `Browse` tab and locate `xyt-hub-csharp.dll` and then click `OK`.
 
+### Requirements
+
+This library requires .NET Framework 4.5 to run.
+
 Creating client object
 -----------------------
 

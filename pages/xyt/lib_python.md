@@ -14,6 +14,10 @@ To install package from file:
 
 `$ pip install xyt-hub-X.Y.Z.tar.gz`
 
+### Requirements
+
+This library requires Python 2.7 or 3.0+ to run.
+
 Configuration
 -------------
 
@@ -25,6 +29,20 @@ To configure authentication settings set following attributes in the
     ApiSettings.user_id = USERNAME
     ApiSettings.user_password = PASSWORD
 
+
+Data representation
+-------------------
+
+Retrieved data is represented as instance of class derived from `DataObject`.
+`DataObject` is an abstract class, which provides convenience methods for data conversions:
+
+  | Method        | Description                                                                             |
+  |---------------|-----------------------------------------------------------------------------------------|
+  | to\_pandas()  | Converts retrieved data to `pandas.DataFrame` representation.                           |
+  | to\_numpy()   | Converts retrieved data to numpy record array. Wraps: `self.to_pandas().to_records()`.  |
+  | to\_csv()     | Converts retrieved data to CSV. Wraps: `self.to_pandas().to_csv()`.                     |
+
+Deserialized protobuf representation is accessible via property: `data`.
 
 Browsing data catalogue
 -----------------------
@@ -723,22 +741,6 @@ The input parameters, query logic and output content is specified by the given `
 #### Output columns
 
 Output columns are dependent on the selected request.
-
-
-Data representation
--------------------
-
-Retrieved data is represented as instance of class derived from `DataObject`.
-`DataObject` is an abstract class, which provides convenience methods for data conversions:
-
-  | Method        | Description                                                                             |
-  |---------------|-----------------------------------------------------------------------------------------|
-  | to\_pandas()  | Converts retrieved data to `pandas.DataFrame` representation.                           |
-  | to\_numpy()   | Converts retrieved data to numpy record array. Wraps: `self.to_pandas().to_records()`.  |
-  | to\_csv()     | Converts retrieved data to CSV. Wraps: `self.to_pandas().to_csv()`.                     |
-
-Deserialized protobuf representation is accessible via property: `data`.
-
 
 Troubleshooting
 ---------------

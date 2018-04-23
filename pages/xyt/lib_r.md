@@ -15,6 +15,10 @@ In order to use big xyt Cloud Platform R Client please install `xythub` package:
 R CMD INSTALL xythub_X.Y.Z.tar.gz
 ```
 
+### Requirements
+
+This library requires R 3.4 to run.
+
 Library initialization
 ----------------------
 ```

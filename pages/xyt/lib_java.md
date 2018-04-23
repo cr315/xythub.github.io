@@ -19,6 +19,10 @@ In order to use big xyt Cloud Platform Java Client add the following lines to yo
  </dependency>
 ```
 
+### Requirements
+
+This library requires JDK8+.
+
 Creating client object
 -----------------------
 
