@@ -111,7 +111,7 @@ More advanced search limiting to specific exchanges on the data source and speci
 | pattern                | string                 |           | Lookup pattern.                                  |
 | exchange_filters       | [string]               |           | Narrow lookup to one or more exchange names.     |
 | region_filters         | [string]               |           | Narrow lookup to one or more region names.       |
-| entity_filters         | [string]               |           | Narrow lookup to one or more entities.           |
+| entity_class_filters   | [string]               |           | Narrow lookup to one or more entities.           |
 | product_type_filters   | [ProductType]          |           | Narrow lookup to one or more product types.      |
 | item_type_filters      | [ItemType]             |           | Narrow lookup to one or more item types.         |
 | first_day              | pd.Timestamp / string  |           | First day that should be taken into account.     |
